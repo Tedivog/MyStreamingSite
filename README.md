@@ -89,49 +89,71 @@ Profile Page
 
 ---
 
+# Campi delle Tabelle
+
+## USERS
+| Campo        | Tipo     | Vincoli        |
+|-------------|----------|---------------|
+| id          | INT      | PK            |
+| username    | STRING   |               |
+| email       | STRING   |               |
+| password    | STRING   |               |
+| created_at  | DATETIME |               |
+
+---
+
+## VIDEOS
+| Campo        | Tipo     | Vincoli              |
+|-------------|----------|---------------------|
+| id          | INT      | PK                  |
+| title       | STRING   |                     |
+| description | STRING   |                     |
+| filepath    | STRING   |                     |
+| upload_date | DATETIME |                     |
+| user_id     | INT      | FK → USERS.id       |
+| category    | STRING   |                     |
+
+---
+
+## COMMENTS
+| Campo       | Tipo     | Vincoli              |
+|------------|----------|---------------------|
+| id         | INT      | PK                  |
+| video_id   | INT      | FK → VIDEOS.id      |
+| user_id    | INT      | FK → USERS.id       |
+| comment    | STRING   |                     |
+| created_at | DATETIME |                     |
+
+---
+
+## REACTIONS
+| Campo     | Tipo   | Vincoli              |
+|----------|--------|---------------------|
+| id       | INT    | PK                  |
+| video_id | INT    | FK → VIDEOS.id      |
+| user_id  | INT    | FK → USERS.id       |
+| type     | STRING |                     |
+
+---
+
+## VIEWS
+| Campo      | Tipo     | Vincoli              |
+|-----------|----------|---------------------|
+| id        | INT      | PK                  |
+| video_id  | INT      | FK → VIDEOS.id      |
+| user_id   | INT      | opzionale           |
+| view_date | DATETIME |                     |
+
+---
 ## ER Diagram
 
 ```mermaid
 erDiagram
-    USERS {
-        int id PK
-        string username
-        string email
-        string password
-        datetime created_at
-    }
-
-    VIDEOS {
-        int id PK
-        string title
-        string description
-        string filepath
-        datetime upload_date
-        int user_id FK
-        string category
-    }
-
-    COMMENTS {
-        int id PK
-        int video_id FK
-        int user_id FK
-        string comment
-        datetime created_at
-    }
-
-    REACTIONS {
-        int id PK
-        int video_id FK
-        int user_id FK
-        string type
-    }
-
-    VIEWS {
-        int id PK
-        int video_id FK
-        int user_id
-        datetime view_date
-    }
+    USERS
+    VIDEOS
+    COMMENTS
+    REACTIONS
+    VIEWS
 
     USERS ||--o{ VIDEOS : uploads
     USERS ||--o{ COMMENTS : writes
