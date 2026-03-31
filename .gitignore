@@ -24,3 +24,6 @@ pnpm-debug.log*
 !.vscode/extensions.json
 .idea
 .DS_Store
+
+# Ignore uploaded videos saved in local
+server/uploads/videos/*

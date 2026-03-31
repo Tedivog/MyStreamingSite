@@ -6,7 +6,7 @@ const upload = require("../middleware/uploadMiddleware");
 const { suggestVideos } = require("../controllers/videoController");
 
 // UPLOAD VIDEO (solo loggato)
-router.post("/upload", auth, upload.single("video"), videoController.uploadVideo);
+router.post("/upload", auth, upload.single("file"), videoController.uploadVideo);
 
 // LISTA VIDEO
 router.get("/", videoController.getAllVideos);

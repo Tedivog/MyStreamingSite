@@ -9,7 +9,7 @@ export default function Header({ onSearchSelect }) {
   const handleHomeClick = (e) => {
     if (location.pathname === "/") {
       e.preventDefault();
-      window.location.reload(); // 🔄 refresh solo se già su /
+      window.location.reload(); // refresh solo se già su /
     } else {
       navigate("/");
     }
